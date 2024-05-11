@@ -60,7 +60,16 @@ class Quizz:
            qa3.config(text="Incorrect,The answer is Ctrl+C",fg="red")
                          
         b1.config(state="disabled")
-        ans.config(text="Score is "+str(Quizz.score))
+        avg=float((Quizz score/4)*100)
+        if (avg>=80):
+            ans.config(text="Excellent, Your score is "+str(avg)+" %.")
+        elif (avg<80 and avg>=60):
+            ans.config(text="Very Good, Your score is "+str(avg)+" %.")
+        elif(avg<60 and avg>=35):
+            ans.config(text="Good, Your score is "+str(avg)+" %.")
+        else:
+            ans.config(text="Do better, Your score is "+str(avg)+" %.")
+   
             
     def reset():
         Quizz.score=0
