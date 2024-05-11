@@ -60,16 +60,16 @@ class Quizz:
            qa3.config(text="Incorrect,The answer is Ctrl+C",fg="red")
                          
         b1.config(state="disabled")
-        avg=float((Quizz score/4)*100)
+        avg=float((Quizz.score/4)*100)
         if (avg>=80):
             ans.config(text="Excellent, Your score is "+str(avg)+" %.")
         elif (avg<80 and avg>=60):
             ans.config(text="Very Good, Your score is "+str(avg)+" %.")
         elif(avg<60 and avg>=35):
-            ans.config(text="Good, Your score is "+str(avg)+" %.")
+            ans.config(text="Good Your score is "+str(avg)+" %.")
         else:
-            ans.config(text="Do better, Your score is "+str(avg)+" %.")
-   
+            ans.config(text="Do better,Your score is "+str(avg)+" %.")
+            
             
     def reset():
         Quizz.score=0
@@ -150,7 +150,7 @@ q4r1=Radiobutton(root, text="Ctrl+Z",fg="purple",variable =opt4,value=1)
 q4r1.place(x=60,y=920)
 q4r2=Radiobutton(root, text="Ctrl+C",fg="purple",variable =opt4,value=2)
 q4r2.place(x=380,y=920)
-q4r3=Radiobutton(root, text="Ctrl+X",fg="purple",variable =opt4,value=3)
+q4r3=Radiobutton(root,fg="purple",variable =opt4,text="Ctrl+X",value=3)
 q4r3.place(x=60,y=1000)
 q4r4=Radiobutton(root, text="Ctrl+V",fg="purple",variable =opt4,value=4)
 q4r4.place(x=380,y=1000)
@@ -166,7 +166,6 @@ b2=Button(root,text="Reset",bg="green",fg="white",command=Quizz.reset)
 b2.place(x=370,y=1150)
 #score
 ans=Label(root,text="")
-ans.place(x=275,y=1250)
-
+ans.place(x=150,y=1250)
 
 root.mainloop()
