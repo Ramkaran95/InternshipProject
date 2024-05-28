@@ -2,8 +2,6 @@
 
 from tkinter import *
 from tkinter import messagebox
-import tkinter as tk
-from tkinter import ttk
 root=Tk()
 root.geometry("700x1400")
 
