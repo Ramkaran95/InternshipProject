@@ -2,6 +2,7 @@
 
 from tkinter import *
 from tkinter import messagebox
+
 root=Tk()
 root.geometry("700x1400")
 
@@ -41,7 +42,7 @@ class Expense_Tracker():
        sum=0
        for widget in p1.winfo_children():           
         widget.destroy()
-       Label(p1,text="Sr No.    Price.   Description.     Date.   Categories", anchor="w").pack(anchor="w",fill=X,padx=5,pady=3)
+       Label(p1,text="Sr No.    Price.   Description.     Date.   Categories", bg="pink",anchor="w").pack(anchor="w",fill=X,padx=5,pady=3)
        for i in range(len(Expense_Tracker.Expense_List)):
            a=Expense_Tracker.Expense_List[i]
            amt=str(a.amt)
@@ -49,7 +50,7 @@ class Expense_Tracker():
            d=a.dte
            di=a.dis
            cate=a.cat
-           Label(p1, height=2,text=str(i+1)+".   ₹" +amt+"   "+di+"  "+d+"  "+cate,anchor="w",bg="lightblue").pack(anchor="w",fill=X,padx=5,pady=3)
+           Label(p1, height=2,text=str(i+1)+".   ₹" +amt+"   "+di+"  "+d+"  "+cate,anchor="w",bg="lightgrey").pack(anchor="w",fill=X,padx=5,pady=3)
        
        if sum==0:
             
@@ -74,7 +75,7 @@ class Expense_Tracker():
                     for widget in p1.winfo_children():
                         widget.destroy()
                    
-                    Label(p1,text="Sr No.  Price.   Description.  Date.  Categories", anchor="w").pack(anchor="w",fill=X,padx=5,pady=3)
+                    Label(p1,text="Sr No.  Price.   Description.  Date.  Categories", bg="pink",anchor="w").pack(anchor="w",fill=X,padx=5,pady=3)
                     for i in range(len(Expense_Tracker.Expense_List)):
                         a = Expense_Tracker.Expense_List[i]
                         amt = str(a.amt)
@@ -83,9 +84,11 @@ class Expense_Tracker():
                         di = a.dis
                         cate=a.cat
                         
-                        Label(p1, width=50, text=str(i + 1) + ".   ₹" + amt + "   " + di + "  " + d+"  "+cate, anchor="w",bg="lightblue").pack(anchor="w",fill=X,padx=5,pady=3)
+                        Label(p1, height=2,text=str(i+1)+".   ₹" +amt+"   "+di+"  "+d+"  "+cate,anchor="w",bg="lightgrey").pack(anchor="w",fill=X,padx=5,pady=3)
+                        
+                                
                     if sum==0:
-                        Label(p1,text="Empty record",bg="red")
+                        Label(p1,text="Empty record",bg="red").pack()
                     else:
                         
                         Label(p1, text="The total expenditure is  ₹" + str(sum),bg="lightgreen").pack()
@@ -190,9 +193,18 @@ b4.place(x=490,y=650)
 
 
 
-p1=Frame(root, bg="lightgrey",borderwidth=2, relief="groove")
+canvas = Canvas(root, width=650, relief ="groove",bd=4,height =500,bg="blue")
+p1= Frame(canvas,bg="lightblue")
+scrollbar = Scrollbar(root, orient="horizontal", command=canvas.yview,width=50)
+canvas.configure(yscrollcommand=scrollbar.set)
 
-p1.place(x=35,y=750)
+scrollbar.place(x=580,y=1270)
+canvas.place(x=15,y=730)
+canvas.create_window((5, 5), window=p1, anchor='nw')
 
+def on_frame(event):
+    canvas.configure(scrollregion=canvas.bbox("all"))
+
+p1.bind("<Configure>", on_frame)
 
 root.mainloop()
